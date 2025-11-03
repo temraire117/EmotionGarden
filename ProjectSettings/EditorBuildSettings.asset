@@ -26,4 +26,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GardenScene.unity
     guid: e07d713ba5f70594b903b4db8649b8f1
+  - enabled: 1
+    path: Assets/Scenes/MiniGame/RythmScene.unity
+    guid: 85075002f79787848ab655a38f358e49
+  - enabled: 1
+    path: Assets/Scenes/MiniGame/CollectEmotionScene.unity
+    guid: 5fb29fea32df66e4d894e5f1f87ca6f8
+  - enabled: 1
+    path: Assets/Scenes/MiniGame/QuizScene.unity
+    guid: ebe4653c4360bd74983fb741e2e45a52
   m_configObjects: {}

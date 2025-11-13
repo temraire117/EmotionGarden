@@ -1,8 +1,12 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class LongNote : Note
 {
+    private bool isJudged = false;
     [SerializeField] private float requiredHoldTime = 1.5f;
+    [SerializeField] private int noteScore = 15;
     private float holdTimer = 0f;
     private bool inJudgeZone = false;
 
@@ -29,9 +33,11 @@ public class LongNote : Note
             if (player != null && player.isSmiling)
             {
                 holdTimer += Time.deltaTime;
-                if (holdTimer >= requiredHoldTime)
+                if (!isJudged && holdTimer >= requiredHoldTime)
                 {
+                    isJudged = true;
                     Debug.Log("Good (LongNote)");
+                    Judge(true, noteScore);
                     Destroy(gameObject);
                 }
             }
@@ -54,8 +60,12 @@ public class LongNote : Note
     protected override void OnTriggerExit2D(Collider2D other)
     {
         base.OnTriggerExit2D(other);
-        if (holdTimer < requiredHoldTime)
+        if (!isJudged && holdTimer < requiredHoldTime)
+        {
+            isJudged = true;
+            Judge(false, 0);
             Debug.Log("Miss (LongNote)");
+        }
     }
 
     public float GetrequiredHoldTime() => requiredHoldTime;

@@ -8,38 +8,57 @@ public class NoteController : MonoBehaviour
     [SerializeField] private GameObject longNotePrefab;
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float bpm = 80f;
-    private float beatInterval;
-    private float timer;    
+    [SerializeField] private JudgeController judgeController;
+    [SerializeField] private int totalNotes = 15;
 
+    private float beatInterval;
+    private int spawnedCount = 0;
+    private int activeNotes = 0;
 
 
     void Start()
     {
         beatInterval = 60f / bpm;
+        StartCoroutine(SpawnNotes());
     }
 
-    void Update()
+    IEnumerator SpawnNotes()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= beatInterval)
+        while (spawnedCount < totalNotes)
         {
-            timer -= beatInterval;
-            SpawnNote();
+            Note note;
+            bool isLong;
+            SpawnNote(out isLong, out note);
+            spawnedCount++;
+
+            float waitTime = beatInterval;
+            if (isLong)
+            {
+                LongNote ln = note as LongNote;
+                if (ln != null)
+                    waitTime += ln.GetrequiredHoldTime();
+            }
+
+            yield return new WaitForSeconds(waitTime);
         }
-    }
-    
-    
-    void SpawnNote()
-    {
-        bool isLong = Random.value < 0.3f;
-        GameObject prefab = isLong ? longNotePrefab : singleNotePrefab;
-        GameObject note = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
 
-        if (isLong)
+        yield return new WaitUntil(() => activeNotes == 0);
+        judgeController.EndGame();
+    }
+
+    
+    void SpawnNote(out bool isLong, out Note note)
+    {
+        isLong = Random.value < 0.3f;
+        GameObject prefab = isLong ? longNotePrefab : singleNotePrefab;
+        GameObject noteObj = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
+        note = noteObj.GetComponent<Note>();
+
+        if (note != null)
         {
-            LongNote ln = note.GetComponent<LongNote>();
-            timer -= ln.GetrequiredHoldTime();
+            activeNotes++;
+            judgeController.RegisterNote(note);
+            note.OnNoteJudged += (_,_) => activeNotes--;
         }
     }
 

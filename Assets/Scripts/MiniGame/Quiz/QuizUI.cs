@@ -43,12 +43,9 @@ public class QuizUI : MonoBehaviour
             int rewardPoints = finalScore;
 
             questionText.text = "퀴즈가 모두 끝났습니다!";
-            finalScoreText.text = $"최종 점수: {finalScore}점";
-            rewardPointsText.text = $"획득한 감정포인트: {rewardPoints}포인트";
             nextButton.SetActive(false);
-            UIManager.Instance.OpenModal(finalScorePanel);
 
-            GameManager.Instance.AddEmotionPoints(rewardPoints);
+            ResultUI.ShowResult(finalScorePanel, finalScoreText, rewardPointsText, finalScore, rewardPoints);
 
             return;
         }

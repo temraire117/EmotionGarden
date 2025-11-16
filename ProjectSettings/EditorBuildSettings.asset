@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GardenScene.unity
     guid: e07d713ba5f70594b903b4db8649b8f1
   - enabled: 1
-    path: Assets/Scenes/MiniGame/RythmScene.unity
+    path: Assets/Scenes/MiniGame/RhythmScene.unity
     guid: 85075002f79787848ab655a38f358e49
   - enabled: 1
     path: Assets/Scenes/MiniGame/CollectEmotionScene.unity

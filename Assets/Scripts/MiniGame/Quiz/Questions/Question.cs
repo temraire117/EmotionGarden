@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName ="Quiz Question", fileName ="New Question")]
+[CreateAssetMenu(menuName ="Game/Quiz Question", fileName ="New Question")]
 public class Question : ScriptableObject
 {
     [TextArea(2, 6)]

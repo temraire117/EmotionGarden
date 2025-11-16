@@ -113,10 +113,47 @@ public class DatabaseController : MonoBehaviour
         }
     }
     
-    // 감정저장소 조회
+    // 감정저장소
+    // 특정 날짜 기록 1건 조회
     public Diary GetDiary(string date)
     {
         return _connection.Table<Diary>().Where(d => d.date == date).FirstOrDefault();
+    }
+    
+    //오늘 기록 여부
+    public bool HasDiaryToday()
+    {
+    string today = System.DateTime.Now.ToString("yyyy-MM-dd");
+    var diary = _connection.Table<Diary>().Where(d => d.date == today).FirstOrDefault();
+    return diary != null;
+    }
+
+    // 저장 또는 업데이트 (하루 1회)
+    public void SaveDiary(string date, string mood)
+    {
+        var existing = _connection.Table<Diary>().Where(d => d.date == date).FirstOrDefault();
+
+        if (existing == null)
+        {
+            _connection.Insert(new Diary
+            {
+                date = date,
+                mood = mood
+            });
+        }
+        else
+        {
+            existing.mood = mood;
+            _connection.Update(existing);
+        }
+    }
+
+    // 특정 월 전체 기록 조회
+    public List<Diary> GetDiaryByMonth(int year, int month)
+    {
+        string prefix = $"{year}-{month:D2}";
+        string sql = $"SELECT * FROM Diary WHERE date LIKE '{prefix}-%'";
+        return _connection.Query<Diary>(sql);
     }
 
 

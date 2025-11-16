@@ -8,7 +8,7 @@ public class CalendarCell : MonoBehaviour
     public Image emojiImage;
 
 
-    // 인덱스 순서: 0 = good, 1 = neutral, 2 = sad
+    // 인덱스 순서: 0 = good, 1 = mild . . .
     public Sprite[] emojiSprites;
 
     public void SetEmpty()
@@ -50,14 +50,13 @@ public class CalendarCell : MonoBehaviour
         switch (m)
         {
             case "good":
-            case "happy":
                 return 0;
-            case "normal":
-            case "neutral":
+            case "mild":
                 return 1;
-            case "bad":
-            case "sad":
+            case "moderate":
                 return 2;
+            case "severe":
+                return 3;
             default:
                 return -1;
         }

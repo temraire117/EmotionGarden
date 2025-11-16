@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2136a15e22e9bb4b889c32d7bfe7c1e, type: 3}
+  m_Name: SelfDiagnosisQuestion 2
+  m_EditorClassIdentifier: 
+  questionText: "3. \uC7A0\uB4E4\uAE30\uAC00 \uC5B4\uB835\uAC70\uB098 \uC790\uC8FC
+    \uAE7C\uB2E4/ \uD639\uC740 \uB108\uBB34 \uB9CE\uC774 \uC7A4\uB2E4."
+  options:
+  - "\uC5C6\uC74C"
+  - "2-3\uC77C \uC774\uC0C1"
+  - "7\uC77C \uC774\uC0C1"
+  - "\uAC70\uC758 \uB9E4\uC77C"

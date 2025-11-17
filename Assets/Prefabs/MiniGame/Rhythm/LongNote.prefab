@@ -171,5 +171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed62661ff52bb834bac26a86cfd089fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fallSpeed: 2
+  fallSpeed: 2.9
   requiredHoldTime: 1.5
+  noteScore: 15

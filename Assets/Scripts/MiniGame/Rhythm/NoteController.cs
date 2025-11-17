@@ -7,7 +7,7 @@ public class NoteController : MonoBehaviour
     [SerializeField] private GameObject singleNotePrefab;
     [SerializeField] private GameObject longNotePrefab;
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private float bpm = 80f;
+    [SerializeField] private float bpm = 75f;
     [SerializeField] private JudgeController judgeController;
     [SerializeField] private int totalNotes = 15;
 
@@ -24,6 +24,8 @@ public class NoteController : MonoBehaviour
 
     IEnumerator SpawnNotes()
     {
+        yield return new WaitForSeconds(beatInterval * 4);
+
         while (spawnedCount < totalNotes)
         {
             Note note;

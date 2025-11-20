@@ -46,6 +46,70 @@ public static class ItemSeeder
                 type = "flower",
                 price = 500,
                 flowers_lang = "사랑의 고백과 따뜻한 마음이 당신에게 전해지기를 바랍니다."
+            },
+            new Item
+            {
+                item_id = 6,
+                name = "헤어1",
+                type = "hair",
+                price = 800,
+                flowers_lang = null
+            },
+            new Item
+            {
+                item_id = 7,
+                name = "헤어2",
+                type = "hair",
+                price = 800,
+                flowers_lang = null
+            },
+            new Item
+            {
+                item_id = 8,
+                name = "흰 반팔 티",
+                type = "top",
+                price = 500,
+                flowers_lang = null
+            },
+            new Item
+            {
+                item_id = 9,
+                name = "검은 반팔 티",
+                type = "top",
+                price = 500,
+                flowers_lang = null
+            },
+            new Item
+            {
+                item_id = 10,
+                name = "반바지",
+                type = "bottom",
+                price = 600,
+                flowers_lang = null
+            },
+            new Item
+            {
+                item_id = 11,
+                name = "청바지",
+                type = "bottom",
+                price = 700,
+                flowers_lang = null
+            },
+            new Item
+            {
+                item_id = 12,
+                name = "평범한 신발",
+                type = "shoes",
+                price = 200,
+                flowers_lang = null
+            },
+            new Item
+            {
+                item_id = 13,
+                name = "샌들",
+                type = "shoes",
+                price = 500,
+                flowers_lang = null
             }
         };
     }

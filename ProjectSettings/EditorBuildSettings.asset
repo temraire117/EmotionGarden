@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MiniGame/QuizScene.unity
     guid: ebe4653c4360bd74983fb741e2e45a52
+  - enabled: 1
+    path: Assets/Scenes/LoadingScene.unity
+    guid: ce27d20bcd0924846bb8c2165d819a84
   m_configObjects: {}

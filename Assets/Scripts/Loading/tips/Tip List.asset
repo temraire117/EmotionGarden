@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4596eef4d60d2c44a852b449e8ffbe55, type: 3}
+  m_Name: Tip List
+  m_EditorClassIdentifier: 
+  tipList:
+  - "\uC7A0\uC2DC \uC0B0\uCC45\uD574\uBCF4\uC138\uC694"
+  - "\uBAB8\uC744 \uAC00\uBCCD\uAC8C \uC2A4\uD2B8\uB808\uCE6D\uD574\uBCF4\uC138\uC694"
+  - "\uB530\uB73B\uD55C \uBB3C\uC744 \uD55C \uC794 \uB9C8\uC154\uBCF4\uC138\uC694"
+  - "\uC88B\uC544\uD588\uB358 \uB178\uB798 \uD55C \uACE1\uC744 \uD2C0\uC5B4\uBCF4\uC138\uC694"
+  - "\uB204\uAD70\uAC00\uC5D0\uAC8C \uAC00\uBCBC\uC6B4 \uBA54\uC138\uC9C0\uB97C \uD558\uB098
+    \uBCF4\uB0B4\uBCF4\uC138\uC694"
+  - "\uC88B\uC544\uD558\uB294 \uC0AC\uC9C4\uC744 \uD558\uB098 \uAEBC\uB0B4\uBCF4\uC138\uC694"

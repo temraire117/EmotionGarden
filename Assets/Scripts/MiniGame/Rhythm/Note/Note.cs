@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Note : MonoBehaviour
 {
     [SerializeField] protected float fallSpeed = 3f;
-    public event System.Action<bool, int> OnNoteJudged;
+    public event System.Action<bool, int, bool> OnNoteJudged;
 
     protected virtual void Update()
     {
@@ -26,9 +26,9 @@ public abstract class Note : MonoBehaviour
         }
     }
 
-    protected virtual void Judge(bool isGood, int noteScore)
+    protected virtual void Judge(bool isGood, int noteScore, bool isLong)
     {
-        OnNoteJudged?.Invoke(isGood, noteScore);
+        OnNoteJudged?.Invoke(isGood, noteScore, isLong);
     }
 
     void OnDestroy()

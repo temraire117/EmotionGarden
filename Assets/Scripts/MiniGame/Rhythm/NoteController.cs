@@ -9,6 +9,7 @@ public class NoteController : MonoBehaviour
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float bpm = 75f;
     [SerializeField] private JudgeController judgeController;
+    [SerializeField] private FlowerUI flowerUI;
     [SerializeField] private int totalNotes = 15;
 
     private float beatInterval;
@@ -55,12 +56,29 @@ public class NoteController : MonoBehaviour
         GameObject prefab = isLong ? longNotePrefab : singleNotePrefab;
         GameObject noteObj = Instantiate(prefab, spawnPoint.position, Quaternion.identity);
         note = noteObj.GetComponent<Note>();
+        if (isLong)
+        {
+            LongNote ln = note as LongNote;
+            if (ln != null)
+            {
+                ln.SetRequireHoldTime(beatInterval);
+            }
+        }
+        flowerUI.SpawnPot(isLong);
+
+        var renderer = noteObj.GetComponentInChildren<Renderer>();
+        renderer.enabled = false;
+
+        note = noteObj.GetComponent<Note>();
 
         if (note != null)
         {
             activeNotes++;
             judgeController.RegisterNote(note);
-            note.OnNoteJudged += (_,_) => activeNotes--;
+            note.OnNoteJudged += (_, _, isFinal) =>
+            {
+                if (isFinal) activeNotes--;
+            };
         }
     }
 

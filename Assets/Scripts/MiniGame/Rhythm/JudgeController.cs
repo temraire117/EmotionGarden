@@ -11,6 +11,8 @@ public class JudgeController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI finalScoreText;
     [SerializeField] private TextMeshProUGUI rewardPointsText;
     [SerializeField] private PlayerState playerState;
+
+    public event System.Action<bool, bool> OnJudged;
             
     private int score = 0;
 
@@ -25,17 +27,22 @@ public class JudgeController : MonoBehaviour
         
     }
 
-    private void HandleNoteJudged(bool isGood, int noteScore)
+    private void HandleNoteJudged(bool isGood, int noteScore, bool isJudged)
     {
         if (isGood)
         {
             score += noteScore;
+            OnJudged?.Invoke(isGood, isJudged);
             Debug.Log("Good!");
-            playerState.PlayBloom();
             UpdateUI();
+            if (isJudged)
+            {
+                playerState.PlayBloom();
+            }
         }
         else
         {
+            OnJudged?.Invoke(isGood, isJudged);
             Debug.Log("Miss!");
         }
     }

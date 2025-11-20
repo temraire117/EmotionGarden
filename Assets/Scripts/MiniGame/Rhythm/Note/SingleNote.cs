@@ -3,8 +3,9 @@ using UnityEngine;
 public class SingleNote : Note
 {
     [SerializeField] private int noteScore = 5;
-    private bool isHit = false;
+    private bool isFinalJudged = false;
     private PlayerState player;
+
     void Start()
     {
         float noteLength = GetComponent<SpriteRenderer>().bounds.size.y;
@@ -17,13 +18,13 @@ public class SingleNote : Note
     }
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("JudgeLine") && !isHit)
+        if (other.CompareTag("JudgeLine") && !isFinalJudged)
         {
             if (player != null && player.isSmiling)
             {
                 Debug.Log("Good");
-                Judge(true, noteScore);
-                isHit = true;
+                isFinalJudged = true;
+                Judge(true, noteScore, isFinalJudged);
                 Destroy(gameObject);
             }
         }
@@ -31,11 +32,11 @@ public class SingleNote : Note
 
     protected override void OnTriggerExit2D(Collider2D other)
     {
-        if (other.CompareTag("JudgeLine") && !isHit)
+        if (other.CompareTag("JudgeLine") && !isFinalJudged)
         {
-            Judge(false, 0);
-            Debug.Log("Miss");
+            isFinalJudged = true;
+            Judge(false, 0, isFinalJudged);
+            Destroy(gameObject);
         }
-        base.OnTriggerExit2D(other);
     }
 }

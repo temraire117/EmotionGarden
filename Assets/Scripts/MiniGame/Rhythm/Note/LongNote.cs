@@ -4,11 +4,15 @@ using UnityEngine.SocialPlatforms.Impl;
 
 public class LongNote : Note
 {
-    private bool isJudged = false;
-    [SerializeField] private float requiredHoldTime = 1.5f;
-    [SerializeField] private int noteScore = 15;
+    [SerializeField] private float requiredHoldTime = 3.6f;
+    [SerializeField] private float stepTime = 1.8f;
+    [SerializeField] private int noteScore = 5;
     private float holdTimer = 0f;
+    private float scoreTimer = 0f;
+
     private bool inJudgeZone = false;
+    private bool isFinalJudged = false;
+    private bool isFirstStage = true;
 
      void Start()
     {
@@ -33,17 +37,30 @@ public class LongNote : Note
             if (player != null && player.isSmiling)
             {
                 holdTimer += Time.deltaTime;
-                if (!isJudged && holdTimer >= requiredHoldTime)
+                scoreTimer += Time.deltaTime;
+
+                if(isFirstStage){
+                    Judge(true, noteScore, false);
+                    isFirstStage = false;
+                }
+
+                else if (!isFinalJudged && holdTimer >= requiredHoldTime)
                 {
-                    isJudged = true;
-                    Debug.Log("Good (LongNote)");
-                    Judge(true, noteScore);
+                    isFinalJudged = true;
+                    Judge(true, noteScore, true);
                     Destroy(gameObject);
                 }
+                else if (!isFinalJudged && scoreTimer >= stepTime)
+                {
+                    scoreTimer = 0f;
+                    Judge(true, noteScore, false);
+                }
+
             }
             else
             {
                 holdTimer = 0f;
+                scoreTimer = 0f;
             }
         }
 
@@ -59,14 +76,18 @@ public class LongNote : Note
 
     protected override void OnTriggerExit2D(Collider2D other)
     {
-        base.OnTriggerExit2D(other);
-        if (!isJudged && holdTimer < requiredHoldTime)
+        if (!isFinalJudged  && holdTimer < requiredHoldTime)
         {
-            isJudged = true;
-            Judge(false, 0);
-            Debug.Log("Miss (LongNote)");
+            isFinalJudged = true;
+            Judge(false, 0, true);
+            Destroy(gameObject);
         }
     }
 
     public float GetrequiredHoldTime() => requiredHoldTime;
+    public void SetRequireHoldTime(float time)
+    {
+        stepTime = time/2;        
+        requiredHoldTime = time;
+    }
 }

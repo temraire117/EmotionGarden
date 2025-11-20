@@ -82,6 +82,18 @@ public class DatabaseController : MonoBehaviour
                        INNER JOIN CharacterItem ON Item.item_id = CharacterItem.item_id";
         return _connection.Query<Item>(sql);
     }
+    
+    // 꽃 아이템 조회
+    public List<Item> GetFlowerItems()
+    {
+        string sql = @"SELECT Item.* FROM Item";
+        return _connection.Query<Item>(sql);
+    }
+    // 특정 아이템 조회
+    public Item GetMyItemById(int itemId)
+    {
+        return GetFlowerItems().Find(item => item.item_id == itemId);
+    }
 
     // 아이템 추가
     public void AddItem(int itemId)

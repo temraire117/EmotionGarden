@@ -91,7 +91,8 @@ public class DatabaseController : MonoBehaviour
         return character.Id;
     }
 
-    // 캐릭터 아이템 조회
+
+    // 보유 중인 모든 아이템 조회
     public List<Item> GetMyItems()
     {
         string sql = @"SELECT Item.* FROM Item 
@@ -99,7 +100,7 @@ public class DatabaseController : MonoBehaviour
         return _connection.Query<Item>(sql);
     }
 
-    //타입 별 아이템 조회
+    //보유 중인 타입 별 아이템 조회
     public List<Item> GetMyItemsByType(string type)
     {
         string sql = @"SELECT Item.item_id, Item.name, Item.price, Item.type
@@ -107,6 +108,30 @@ public class DatabaseController : MonoBehaviour
                     INNER JOIN CharacterItem 
                         ON Item.item_id = CharacterItem.item_id
                     WHERE Item.type = ?";
+        return _connection.Query<Item>(sql, type);
+    }
+
+    
+    // 꽃 아이템 조회
+    public List<Item> GetFlowerItems()
+    {
+        string sql = @"SELECT Item.* 
+                    FROM Item
+                    WHERE type = 'flower'";
+        return _connection.Query<Item>(sql);
+    }
+    // 특정 아이템 조회
+    public Item GetMyItemById(int itemId)
+    {
+        return GetFlowerItems().Find(item => item.item_id == itemId);
+    }
+
+    //타입 별 아이템 조회
+    public List<Item> GetAllItemsByType(string type)
+    {
+        string sql = @"SELECT Item.* 
+                    FROM Item
+                    WHERE type = ?";
         return _connection.Query<Item>(sql, type);
     }
 

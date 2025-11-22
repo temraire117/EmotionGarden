@@ -15,7 +15,8 @@ public class CollectManager : MonoBehaviour
     [SerializeField] private ObjectSpawner spawner;
     [SerializeField] private PlayerTouchController player;
     [SerializeField] private AudioSource sfxSource;
-    [SerializeField] private AudioClip sfxClip;
+    // 0: good, 1: bad
+    [SerializeField] private List<AudioClip> sfxClip;
     [SerializeField] private List<GameObject> lifeImage;
 
     private int score = 0;
@@ -29,13 +30,14 @@ public class CollectManager : MonoBehaviour
     public void AddScore()
     {
         score += 10;
-        sfxSource.PlayOneShot(sfxClip);
+        sfxSource.PlayOneShot(sfxClip[0]);
         UpdateUI();
     }
 
     public void ReduceLife()
     {
         life -= 1;
+        sfxSource.PlayOneShot(sfxClip[1]);
         UpdateUI();
         for(int i = 0; i< lifeImage.Count; i++)
         {

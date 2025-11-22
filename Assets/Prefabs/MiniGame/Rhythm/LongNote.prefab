@@ -173,4 +173,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 2.9
   requiredHoldTime: 1.5
-  noteScore: 15
+  stepTime: 0.5
+  noteScore: 5

@@ -12,7 +12,7 @@ public class FlowerUI : MonoBehaviour
     [SerializeField] JudgeController judgeController;
 
     [SerializeField] AudioSource sfxSource;
-    // 0: drop , 1: blooming , 2: bloom
+    // 0: drop , 1: blooming , 2: bloom, 3: miss
     [SerializeField] List<AudioClip> sounds;
 
     private FlowerPot currentPot;
@@ -75,6 +75,7 @@ public class FlowerUI : MonoBehaviour
 
         if (isJudged)
         {
+            if(!isGood) sfxSource.PlayOneShot(sounds[3]);
             DestroyPot();
         }
 

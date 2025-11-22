@@ -10,7 +10,7 @@ public class NoteController : MonoBehaviour
     [SerializeField] private float bpm = 75f;
     [SerializeField] private JudgeController judgeController;
     [SerializeField] private FlowerUI flowerUI;
-    [SerializeField] private int totalNotes = 15;
+    [SerializeField] private int totalNotes = 8;
 
     private float beatInterval;
     private int spawnedCount = 0;
